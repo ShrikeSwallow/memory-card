@@ -3,7 +3,7 @@
 function App() {
   return (
     <>
-      <h1>Pokemon Memory Card Game</h1>
+      <h1 className="text-4xl font-black">Pokemon Memory Game</h1>
     </>
   );
 }
