@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import GameWindow from "./components/GameWindow";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         Get points by clicking on an image but don&apos;t click on any more than
         once!
       </h2>
+      <GameWindow></GameWindow>
     </>
   );
 }
