@@ -44,7 +44,12 @@ const GameWindow = () => {
     while (cardsSet.size < limit) {
       cardsSet.add(Math.floor(Math.random() * pokeArr.length));
     }
-    setCardsList([...cardsSet]);
+    const tempList = [];
+    pokeArr.forEach((pokemon) => {
+      if (cardsSet.has(pokemon.id)) tempList.push(pokemon);
+    });
+    console.log(tempList);
+    setCardsList([...tempList]);
   };
 
   return (
@@ -59,7 +64,7 @@ const GameWindow = () => {
       {game === "active" && (
         <ul>
           {cardsList.map((card) => (
-            <li key={card}>{card}</li>
+            <li key={card.id}>{card.name}</li>
           ))}
         </ul>
       )}
