@@ -60,7 +60,7 @@ const GameWindow = () => {
       <p className="content-center">Current game size: {cardsList.length}</p>
       <button
         onClick={newGame}
-        className="place-self-stretch rounded bg-slate-400 p-2"
+        className="place-self-stretch rounded bg-slate-500 p-2 transition delay-100 duration-200 ease-in-out hover:bg-slate-400"
       >
         Start new game
       </button>
@@ -73,7 +73,7 @@ const GameWindow = () => {
             <li key={card.id} className="">
               <div
                 onClick={newGame}
-                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-100 duration-200 ease-in-out hover:bg-slate-600"
+                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600"
               >
                 <img src={card.img} alt={card.name} className="min-w-[10vw]" />
                 <p className="select-none capitalize">{card.name}</p>
