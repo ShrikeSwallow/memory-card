@@ -73,7 +73,7 @@ const GameWindow = () => {
             <li key={card.id} className="">
               <div
                 onClick={newGame}
-                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-600 p-4 hover:bg-slate-500"
+                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-100 duration-200 ease-in-out hover:bg-slate-600"
               >
                 <img src={card.img} alt={card.name} className="min-w-[10vw]" />
                 <p className="select-none capitalize">{card.name}</p>
