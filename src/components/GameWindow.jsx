@@ -53,16 +53,22 @@ const GameWindow = () => {
   };
 
   return (
-    <main className="self-center">
-      <p>Best Score: {curr}</p>
+    <main className="mt-8 grid grid-cols-3 pl-32 pr-32">
       <p>Current Score: {best}</p>
-      <p>Possible pokemon: {pokeArr.length}</p>
-      <p>Current game size: {cardsList.length}</p>
-      <button onClick={newGame} className="rounded bg-slate-400 p-2">
+      <p></p>
+      <p className="place-self-end">Best Score: {curr}</p>
+      <p className="content-center">Current game size: {cardsList.length}</p>
+      <button
+        onClick={newGame}
+        className="place-self-stretch rounded bg-slate-400 p-2"
+      >
         Start new game
       </button>
+      <p className="content-center justify-self-end">
+        Possible pokemon: {pokeArr.length}
+      </p>
       {game === "active" && (
-        <ul className="flex flex-wrap justify-between">
+        <ul className="col-span-3 mt-8 flex flex-wrap justify-between">
           {cardsList.map((card) => (
             <li key={card.id} className="">
               <div
