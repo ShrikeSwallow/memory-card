@@ -41,8 +41,8 @@ const GameWindow = () => {
     setGame("active");
     const cardsSet = new Set();
     const limit = 4;
-    while (cardsSet.size < limit) {
-      cardsSet.add(Math.floor(Math.random() * pokeArr.length));
+    while (cardsSet.size !== limit) {
+      cardsSet.add(Math.floor(Math.random() * pokeArr.length + 1));
     }
     const tempList = [];
     pokeArr.forEach((pokemon) => {
@@ -53,7 +53,7 @@ const GameWindow = () => {
   };
 
   return (
-    <main>
+    <main className="self-center">
       <p>Best Score: {curr}</p>
       <p>Current Score: {best}</p>
       <p>Possible pokemon: {pokeArr.length}</p>
@@ -62,9 +62,17 @@ const GameWindow = () => {
         Start new game
       </button>
       {game === "active" && (
-        <ul>
+        <ul className="flex flex-wrap justify-between">
           {cardsList.map((card) => (
-            <li key={card.id}>{card.name}</li>
+            <li key={card.id} className="">
+              <div
+                onClick={newGame}
+                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-600 p-4 hover:bg-slate-500"
+              >
+                <img src={card.img} alt={card.name} className="min-w-[10vw]" />
+                <p className="select-none capitalize">{card.name}</p>
+              </div>
+            </li>
           ))}
         </ul>
       )}
