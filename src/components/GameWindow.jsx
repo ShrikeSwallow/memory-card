@@ -73,17 +73,21 @@ const GameWindow = () => {
     const clickedId = Number.parseInt(event.currentTarget.id);
     if (!clickedCards.includes(clickedId)) {
       setClickedCards([...clickedCards, clickedId]);
+      setCurr(curr + 1);
       shuffleCards();
     } else {
       alert("Game over");
+      if (curr > best) setBest(curr);
+      setClickedCards([]);
+      setCurr(0);
     }
   };
 
   return (
     <main className="mt-8 grid grid-cols-3 pl-32 pr-32">
-      <p>Current Score: {best}</p>
+      <p>Current Score: {curr}</p>
       <p></p>
-      <p className="place-self-end">Best Score: {curr}</p>
+      <p className="place-self-end">Best Score: {best}</p>
       <p className="content-center">Current game size: {cardsList.length}</p>
       <button
         onClick={newGame}
