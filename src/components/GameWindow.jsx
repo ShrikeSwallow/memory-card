@@ -40,7 +40,7 @@ const GameWindow = () => {
     setCurr(0);
     setGame("active");
     const cardsSet = new Set();
-    const limit = 4;
+    const limit = 18;
     while (cardsSet.size !== limit) {
       cardsSet.add(Math.floor(Math.random() * pokeArr.length + 1));
     }
@@ -48,7 +48,6 @@ const GameWindow = () => {
     pokeArr.forEach((pokemon) => {
       if (cardsSet.has(pokemon.id)) tempList.push(pokemon);
     });
-    console.log(tempList);
     setCardsList([...tempList]);
   };
 
@@ -84,14 +83,14 @@ const GameWindow = () => {
         Possible pokemon: {pokeArr.length}
       </p>
       {game === "active" && (
-        <ul className="col-span-3 mt-8 flex flex-wrap justify-between">
+        <ul className="col-span-3 mt-8 grid grid-cols-6 items-center gap-6">
           {cardsList.map((card) => (
             <li key={card.id} className="">
               <div
                 onClick={shuffleCards}
                 className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600"
               >
-                <img src={card.img} alt={card.name} className="min-w-[10vw]" />
+                <img src={card.img} alt={card.name} className="min-w-[8vw]" />
                 <p className="select-none capitalize">{card.name}</p>
               </div>
             </li>
