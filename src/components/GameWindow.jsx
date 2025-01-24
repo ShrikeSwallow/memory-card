@@ -7,6 +7,7 @@ const GameWindow = () => {
   const [best, setBest] = useState(0);
   const [pokeArr, setPokeArr] = useState([]);
   const [cardsList, setCardsList] = useState([]);
+  const [clickedCards, setClickedCards] = useState([]);
   const [game, setGame] = useState("pre");
 
   useEffect(() => {
@@ -21,9 +22,9 @@ const GameWindow = () => {
         const ogPokemon = await response.json();
         setPokeArr(
           ogPokemon.results.map((pokemon, index) => {
-            const id = index + 1;
-            const name = pokemon.name;
-            const img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+            let id = index + 1;
+            let name = pokemon.name;
+            let img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
             return { id, name, img };
           }),
         );
@@ -67,6 +68,17 @@ const GameWindow = () => {
     setCardsList([...tempList]);
   };
 
+  const handleTurn = (event) => {
+    console.log(event.currentTarget.id);
+    const clickedId = Number.parseInt(event.currentTarget.id);
+    if (!clickedCards.includes(clickedId)) {
+      setClickedCards([...clickedCards, clickedId]);
+      shuffleCards();
+    } else {
+      alert("Game over");
+    }
+  };
+
   return (
     <main className="mt-8 grid grid-cols-3 pl-32 pr-32">
       <p>Current Score: {best}</p>
@@ -85,11 +97,8 @@ const GameWindow = () => {
       {game === "active" && (
         <ul className="col-span-3 mt-8 grid grid-cols-6 items-center gap-6">
           {cardsList.map((card) => (
-            <li key={card.id} className="">
-              <div
-                onClick={shuffleCards}
-                className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600"
-              >
+            <li key={card.id} id={card.id} onClick={handleTurn} className="">
+              <div className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600">
                 <img src={card.img} alt={card.name} className="min-w-[8vw]" />
                 <p className="select-none capitalize">{card.name}</p>
               </div>
