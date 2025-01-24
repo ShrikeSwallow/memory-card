@@ -52,6 +52,22 @@ const GameWindow = () => {
     setCardsList([...tempList]);
   };
 
+  const shuffleCards = () => {
+    const tempList = [...cardsList];
+    let currentIndex = cardsList.length;
+
+    while (currentIndex !== 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      [tempList[currentIndex], tempList[randomIndex]] = [
+        tempList[randomIndex],
+        tempList[currentIndex],
+      ];
+    }
+    setCardsList([...tempList]);
+  };
+
   return (
     <main className="mt-8 grid grid-cols-3 pl-32 pr-32">
       <p>Current Score: {best}</p>
@@ -72,7 +88,7 @@ const GameWindow = () => {
           {cardsList.map((card) => (
             <li key={card.id} className="">
               <div
-                onClick={newGame}
+                onClick={shuffleCards}
                 className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600"
               >
                 <img src={card.img} alt={card.name} className="min-w-[10vw]" />
