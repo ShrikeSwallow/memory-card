@@ -78,6 +78,7 @@ const GameWindow = () => {
     } else {
       alert("Game over");
       if (curr > best) setBest(curr);
+      setGame("over");
       setClickedCards([]);
       setCurr(0);
     }
@@ -98,10 +99,15 @@ const GameWindow = () => {
       <p className="content-center justify-self-end">
         Possible pokemon: {pokeArr.length}
       </p>
-      {game === "active" && (
+      {game !== "pre" && (
         <ul className="col-span-3 mt-8 grid grid-cols-6 items-center gap-6">
           {cardsList.map((card) => (
-            <li key={card.id} id={card.id} onClick={handleTurn} className="">
+            <li
+              key={card.id}
+              id={card.id}
+              onClick={handleTurn}
+              className={game === "over" ? "pointer-events-none" : ""}
+            >
               <div className="pokeCard flex flex-col items-center rounded-2xl bg-slate-800 p-4 transition delay-200 duration-100 ease-in-out hover:bg-slate-600">
                 <img src={card.img} alt={card.name} className="min-w-[8vw]" />
                 <p className="select-none capitalize">{card.name}</p>
